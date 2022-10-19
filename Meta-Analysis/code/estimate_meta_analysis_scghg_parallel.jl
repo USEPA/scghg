@@ -10,10 +10,11 @@ Pkg.activate(joinpath(@__DIR__, ".."));
 Pkg.instantiate();
 
 ## precompile
-using Mimi, MimiGIVE, MimiRFFSPs, DataDeps, Random, CSV, DataFrames, Statistics;
+using Mimi, MimiGIVE, MimiRFFSPs, DataDeps, Random, CSV, DataFrames, Distributed, Statistics;
 
 ## automatically download data dependancies (rffsps)
-datadep"rffsps_v5"
+MimiRFFSPs.datadep"rffsps_v5"
+ENV["DATADEPS_ALWAYS_ACCEPT"] = "true"
 
 ######################################
 ##################### model parameters
