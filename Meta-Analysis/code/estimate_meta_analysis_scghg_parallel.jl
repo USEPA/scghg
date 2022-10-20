@@ -13,8 +13,8 @@ Pkg.instantiate();
 using Mimi, MimiGIVE, MimiRFFSPs, DataDeps, Random, CSV, DataFrames, Distributed, Statistics;
 
 ## automatically download data dependancies (rffsps)
-MimiRFFSPs.datadep"rffsps_v5"
 ENV["DATADEPS_ALWAYS_ACCEPT"] = "true"
+MimiRFFSPs.datadep"rffsps_v5"
 
 ######################################
 ##################### model parameters
