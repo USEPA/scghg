@@ -43,7 +43,7 @@ conf_base = {'mortality_version': 1,
   
 # Download inputs from internet  
 print("Downloading input files...")
-name = 'dscim_v20220929_inputs.zip'
+name = 'dscim_v20221021_inputs.zip'
 url = 'https://storage.googleapis.com/climateimpactlab-scc-tool/dscim-epa_input_data/' + name
 with requests.get(url, stream = True) as r:
     r.raise_for_status()

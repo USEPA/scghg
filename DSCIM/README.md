@@ -69,6 +69,28 @@ The default is a global SC-GHG accounting for global damages in response to a pu
 
 #### Optional files
 
-By default, the script will produce the expected SC-GHGs as a `.csv`. The user also has the option to save the full distribution of 10,000 SC-GHGs -- across emissions, socioeconomics, and climate uncertainty -- as a `.csv`. This file includes the trial-specific adjustment factor as described in the User Manual. The use also has the option to save global consumption net of baseline climate damages ("global_consumption_no_pulse") as a netcdf `.nc4` file.
+By default, the script will produce the expected SC-GHGs as a `.csv`. The user also has the option to save the full distribution of 10,000 SC-GHGs -- across emissions, socioeconomics, and climate uncertainty -- as a `.csv`, and the option to save global consumption net of baseline climate damages ("global_consumption_no_pulse") as a netcdf `.nc4` file.
 
+## Further Information
 
+#### Input Files
+These files are installed during the above Setup process and take up 4.65 GB of disk space.
+
+Climate
+- Global mean surface temperature (GMST) trajectories output from FaIR: gmst_pulse.nc
+- Global mean sea level (GMSL) trajectories derived from FaIR GMST: gmsl_pulse.zarr
+- Conversion factors to convert SC-GHGs to $/tonne of GHG: conversion_v5.03_Feb072022.nc4
+
+Econ
+- RFF USA aggregated GDP and population trajectories: rff_USA_socioeconomics.nc4
+- RFF global aggregated GDP and population trajectories: rff_global_socioeconomics.nc4
+
+Damage Functions
+- Files containing a set of damage function coefficients for each RFF draw for each economic sector and valuation choice.
+- RFF damage function emulator weights: damage_function_weights.nc4
+
+#### Inputs Creation
+
+In order to generate GMSL trajectories following FaIR GMST output trajectories for RFF emissions, an emulation approach is taken and demonstrated in a notebook in the "input_creation" folder. The methods are described in the [Documentation](https://impactlab.org/research/dscim-user-manual-version-092022-epa), Appendix C5. 
+
+The emulation requires a number of input files, totalling about 12 GB on disk. These can be obtained from [https://storage.googleapis.com/climateimpactlab-scc-tool/dscim-epa_input_data/coastal_gmsl_inputs_v20221020.zip](https://storage.googleapis.com/climateimpactlab-scc-tool/dscim-epa_input_data/coastal_gmsl_inputs_v20221020.zip) and unzipped inside of the `input_creation` folder in `dscim-epa`.
