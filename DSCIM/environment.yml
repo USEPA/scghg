@@ -8,7 +8,7 @@ dependencies:
   - python==3.9
   - pyfiglet==0.8.post1
   - pip==22.2.2
-  - xarray==2022.6.0
+  - xarray==2022.3.0
   - pandas==1.4.3
   - numpy==1.23.3
   - scipy==1.9.1
