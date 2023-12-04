@@ -1,7 +1,9 @@
 # The Social Cost of Greenhouse Gases
-This repo provides replication instructions for estimating the social cost of greenhouse gases (SC-GHGs) as outlined in the 2022 draft technical report "Report on the Social Cost of Greenhouse Gases: Estimates Incorporating Recent Scientific Advances" developed by the U.S. Environmental Protection Agency (EPA). For more information about the report and peer review process, see [EPA's SC-GHG website](https://www.epa.gov/environmental-economics/scghg). SC-GHG estimation for each gas in each emissions year comes from three equally-weighted damage modules. The three damage modules are:
+This repo provides replication instructions for estimating the social cost of greenhouse gases (SC-GHGs) as outlined in the "Report on the Social Cost of Greenhouse Gases: Estimates Incorporating Recent Scientific Advances" developed by the U.S. Environmental Protection Agency (EPA). For more information about the report and peer review process, see [EPA's SC-GHG website](https://www.epa.gov/environmental-economics/scghg). 
 
-1. a subnational-scale, sectoral damage function based on the Data-driven Spatial Climate Impact Model (DSCIM) developed by the Climate Impact Lab ([CIL 2022](DSCIM/DSCIM_User_Manual.pdf), [Carleton et al. 2022](https://academic.oup.com/qje/article-abstract/137/4/2037/6571943), [Rode et al. 2021](https://doi.org/10.1038/s41586-021-03883-8)). 
+SC-GHG estimation for each gas in each emissions year comes from three equally-weighted damage modules. The three damage modules are:
+
+1. a subnational-scale, sectoral damage function based on the Data-driven Spatial Climate Impact Model (DSCIM) developed by the Climate Impact Lab ([CIL 2023](DSCIM/DSCIM_User_Manual.pdf)). 
 
 2. a country-scale, sectoral damage function (based on the Greenhouse Gas Impact Value Estimator (GIVE) model developed under RFF’s Social Cost of Carbon Initiative ([Rennert et al. 2022b](https://www.nature.com/articles/s41586-022-05224-9)), 
 
@@ -95,7 +97,7 @@ julia estimate_give_scghg_parallel.jl
 **Note:** Estimation time for the GIVE damage module using 10,000 Monte Carlo draws for each `gas + emissions year` pair (one pair per processor) takes approximately 8 hours per pair (varies by machine). Estimation time can take longer if running many `gas + emissions year` pairs at once (in parallel). On some machines, when running all 21 `gas + emissions year` pairs, estimation time has taken up to 14 hours per pair. In general, running all 3 gases and 7 emissions year pairs (21 in total) requires over 175 processor-hours (varies by machine). Users should plan to allocate 5GB of memory per processor.   
 
 ## The Meta-Analysis
-Replicating the estimates from the Meta-Analysis can be done by following the steps outlined here and assumes that the user has downloaded and installed *Julia*. Begin by opening a terminal and navigating via the command line to the location of the cloned respository (as outlined [above](#getting-started)). Then, navigate to the [code](Meta-Analysis/code) subdirectory by typing:
+Replicating the estimates from the Meta-Analysis can be done by following the steps outlined here and assumes that the user has downloaded and installed *Julia*. Begin by opening a terminal and navigating via the command line to the location of the cloned repository (as outlined [above](#getting-started)). Then, navigate to the [code](Meta-Analysis/code) subdirectory by typing:
 
 ```
 cd Meta-Analysis\code
@@ -128,7 +130,7 @@ This repository already includes all estimates from running the three damage mod
 This repository already includes the term structure and calibrated $\rho$ and $\eta$ parameters, located in the [EPA\output\discounting](EPA/output/discounting) subdirectory in the file [calibrated_rho_eta.csv](EPA/output/discounting/calibrated_rho_eta.csv). The replication code for these is also included in the [EPA](/EPA) directory. Navigate to the [EPA](/EPA/) directory in the file explorer or equivalent. Open the *R* project titled `EPA.Rproj`. Then, naviate to the [code](EPA/code) subdirectory and open the desired script. The script `replicate_bauer_and_rudebusch_term_structures.R` produces the term structure that is then used in the calibration of $\rho$ and $\eta$ in `calibrate_rho_and_eta.R`. All remaining steps are documented in the code. 
 
 # Additional Information
-DSCIM is a product of [The Climate Impact Lab](https://impactlab.org/) in collaboration with [The Rhodium Group](https://rhg.com/). Addional information on DSCIM, including additional functionality, can be found in the user manual ([CIL 2022](DSCIM/CIL_DSCIM_User_Manual_092022-EPA_draft.pdf)) and in the [README](DSCIM/README.md) within the [DSCIM](DSCIM) subdirectory.
+DSCIM is a product of [The Climate Impact Lab](https://impactlab.org/) in collaboration with [The Rhodium Group](https://rhg.com/). Addional information on DSCIM, including additional functionality, can be found in the user manual ([CIL 2023](DSCIM/CIL_DSCIM_User_Manual.pdf)) and in the [README](DSCIM/README.md) within the [DSCIM](DSCIM) subdirectory.
 
 Both the GIVE and Meta-Analysis estimates are performed using the [MimiGIVE](https://github.com/rffscghg/MimiGIVE.jl) model, published by [Rennert et al. (2022b)](https://www.nature.com/articles/s41586-022-05224-9) as a product of the [Social Cost of Carbon Initiative](https://www.rff.org/topics/scc/social-cost-carbon-initiative/), a collaborative effort led by [Resources for the Future](https://www.rff.org/) and the [Energy Resources Group](https://erg.berkeley.edu/) at the University of California Berkeley. Additional functionality within this model can be found in the [MimiGIVE](https://github.com/rffscghg/MimiGIVE.jl) repository.
 
@@ -140,7 +142,7 @@ Bauer, M.D. and G.D. Rudebusch. 2021. The rising cost of climate change: evidenc
 
 Carleton, T., A. Jina, M. Delgado, M. Greenstone, T. Houser, S. Hsiang, A. Hultgren, R. Kopp, K. McCusker, I. Nath, J. Rising, A. Ashwin, H Seo, A. Viaene, J. Yaun, A. Zhang. 2022. Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits. _The Quarterly Journal of Economics._ 
 
-Climate Impact Lab (CIL). 2022. Data-driven Spatial Climate Impact Model User Manual, Version 092022-EPA.
+Climate Impact Lab (CIL). 2023. Data-driven Spatial Climate Impact Model User Manual, Version 092023-EPA.
 
 Howard, P., and T. Sterner. 2017. Few and Not So Far Between: A Meta-Analysis of Climate Damage Estimates. _Environmental and Resource Economics_.
 
