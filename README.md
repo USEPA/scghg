@@ -14,6 +14,15 @@ All other modules (i.e., socioeconomics, climate, and discounting) are consisten
 # Requirements
 1. *Julia* is free and available for download [here](https://julialang.org/). Estimation of the SC-GHGs for the [`GIVE`](#the-greenhouse-gas-impact-value-estimator-give) and [`Meta-Analysis`](#the-meta-analysis) damage modules was performed on Julia 1.6. While newer versions of *Julia* are compatible with all the code (e.g., 1.7 or 1.8), the random number generators were updated and results might not be identical due to random differences in the random parameters underlying the Monte Carlo runs of GIVE and the Meta-Analysis. In addition,  **Julia 1.6** should be used to avoid errors due to compatibility with environment and package version files (.toml files). Install *Julia* and ensure that it can be invoked (ran) from where the replication repository is to be cloned ("in your path"). 
 
+*Tip*: Julia ships with the Julia version manager [Juliaup](https://github.com/JuliaLang/juliaup) which is useful in this case for handling Julia versions. To add the option of running Julia version 1.6 to your machine type the following in the terminal.
+```
+juliaup add 1.6
+```
+To run code using a specific version, as shown below in the replication code, you may indicate a version using `+version` ie.
+```
+julia +1.6 myfile.jl
+```
+
 2. *R* is free and available for download [here](https://www.r-project.org/). The *RStudio* integrated development environment is useful for replication, it is free and available for download [here](https://www.rstudio.com/products/rstudio/). *R* is used to replicate the term structure in [Bauer and Rudebusch (2021)](https://direct.mit.edu/rest/article-abstract/doi/10.1162/rest_a_01109/107405/The-Rising-Cost-of-Climate-Change-Evidence-from?redirectedFrom=fulltext) and the discounting parameters $\rho$ and $\eta$ derived in [Newell, Pizer, and Prest (2022)](https://www.journals.uchicago.edu/doi/10.1086/718145). *R* is also used to collect the estimates from each damage module and create [a table of unrounded annual SC-GHGs](EPA/output/scghg_annual.csv). 
 
 3. *Anaconda* is free and available for download [here](https://www.anaconda.com/). Other distributions can be used, too, such as [miniconda](https://docs.conda.io/en/latest/miniconda.html), or [mamba](https://mamba.readthedocs.io/en/latest/). Regardless of the user's desired distribution, *conda* packages are used to perform estimation of the [`DSCIM`](#the-data-driven-spatial-climate-impact-model-dscim) damage module. 
@@ -82,7 +91,7 @@ The directory `GIVE\code` should be the current location of the terminal. This d
 To estimate the SC-GHG for one gas (e.g., $CO_2$) for one emissions year (e.g., 2020), open the script `estimate_give_scghg.jl` to select the year (line 29) and the gas (line 35). Save the changes (re-save the file). Then, on the command line, type:
 
 ```
-julia estimate_give_scghg.jl
+julia +1.6 estimate_give_scghg.jl
 ```
 
 **Note:** Estimation time for the GIVE damage module using 10,000 Monte Carlo draws for a single gas and single emissions year takes approximately 7 hours (varies by machine). 
@@ -91,7 +100,7 @@ julia estimate_give_scghg.jl
 If the replication machine has more than one processor available (e.g., CPU, core), they can be put to use with the script `estimate_give_scghg_parallel.jl`. Each `gas + emissions year` pair requires 1 processor. Around line 81 is the command `addprocs()`. Select the desired number of processors to allocate. There are 21 total pairs (3 gases and 7 emissions years), which is the default number requested in the code. Then, on the command line, type:
 
 ```
-julia estimate_give_scghg_parallel.jl
+julia +1.6 estimate_give_scghg_parallel.jl
 ```
 
 **Note:** Estimation time for the GIVE damage module using 10,000 Monte Carlo draws for each `gas + emissions year` pair (one pair per processor) takes approximately 8 hours per pair (varies by machine). Estimation time can take longer if running many `gas + emissions year` pairs at once (in parallel). On some machines, when running all 21 `gas + emissions year` pairs, estimation time has taken up to 14 hours per pair. In general, running all 3 gases and 7 emissions year pairs (21 in total) requires over 175 processor-hours (varies by machine). Users should plan to allocate 5GB of memory per processor.   
@@ -109,7 +118,7 @@ The directory `Meta-Analysis\code` should be the current location in the termina
 To estimate the SC-GHG for one gas (e.g., $CO_2$) for one emissions year (e.g., 2020), open the script `estimate_meta_analysis_scghg.jl` to select the year (line 29) and the gas (line 35). Save the selection. Then, on the command line, type:
 
 ```
-julia estimate_meta_analysis_scghg.jl
+julia +1.6 estimate_meta_analysis_scghg.jl
 ```
 
 **Note:** Estimation time for the Meta-Analysis damage module using 10,000 Monte Carlo draws for a single gas and single emissions year takes approximately 3 hours (varies by machine). 
@@ -118,7 +127,7 @@ julia estimate_meta_analysis_scghg.jl
 If the replication machine has more than one processor available (e.g., CPU, core), they can be put to use with the script `estimate_meta_analysis_scghg_parallel.jl`. Each `gas + emissions year` pair requires 1 processor. Around line 81 is the command `addprocs()`. Select the desired number of processors to allocate. There are 21 total pairs (3 gases and 7 emissions years), which is the default number requested in the code. Then, on the command line, type:
 
 ```
-julia estimate_meta_analysis_scghg_parallel.jl
+julia +1.6 estimate_meta_analysis_scghg_parallel.jl
 ```
 
 **Note:** Estimation time for the Meta-Analysis damage module using 10,000 Monte Carlo draws for each `gas + emissions year` pair (one pair per processor) takes approximately 3 hours per pair (varies by machine). Estimation time can take longer if running many `gas + emissions year` pairs at once (in parallel). On some machines, when running all 21 `gas + emissions year` pairs, estimation time has taken up to 4 hours per pair. In general, running the model for all 3 gases and 7 emissions year pairs (21 in total) requires over 60 processor-hours (varies by machine). Users should plan to allocate approximately 3GB of memory per processor.   
