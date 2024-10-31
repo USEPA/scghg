@@ -1,3 +1,6 @@
+# large files from GIVE save_list
+GIVE/output/mimifair/**/*.csv
+
 # R stuff
 .Rproj.user
 .Rhistory
