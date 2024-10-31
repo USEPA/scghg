@@ -143,14 +143,14 @@ ggplot() +
                 color    = version, 
                 group    = group, 
                 linetype = version), 
-            size = 1) +
+            linewidth = 1) +
   geom_line(data = fair, 
             aes(x        = year, 
                 y        = med, 
                 color    = version, 
                 group    = group, 
                 linetype = 'longdashed'), 
-            size = 1) +
+            linewidth = 1) +
   ## fair uncertainty
   geom_ribbon(data = fair,
               aes(x    = year, 
@@ -177,7 +177,7 @@ ggplot() +
                 color    = version, 
                 group    = group, 
                 linetype = version), 
-            size = 1) + 
+            linewidth = 1) + 
   ## hector
   geom_line(data = hector, 
             aes(x        = year, 
@@ -185,7 +185,7 @@ ggplot() +
                 color    = version, 
                 group    = group, 
                 linetype = version), 
-            size = 1) + 
+            linewidth = 1) + 
   ## plot formatting
   annotation_custom(
     grob = grid::rectGrob(gp = grid::gpar(col = NA, fill = "white")),
@@ -221,7 +221,7 @@ ggplot() +
         text             = element_text(family="sans-serif", color='grey20')) + 
   guides(linetype = 'none')
 
-ggsave(paste0('output/figures/temp_anomaly_by_climate_model_co2.svg'), 
+ggsave(paste0('output/figures/Figure-2.2.3-Temperature-Anomaly-CO2.svg'), 
        width  = 9, 
        height = 6)
 
